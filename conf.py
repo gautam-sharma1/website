@@ -246,16 +246,16 @@ PAGES = (
     ("pages/*.html", "", "page.tmpl"),
 )
 
-# POSTS = (
-#     ("posts/homepage.rst", "posts", "post.tmpl"),
-#     ("posts/homepage.md", "posts", "post.tmpl"),
-#     ("posts/homepage.txt", "posts", "post.tmpl"),
-#     ("posts/homepage.html", "posts", "post.tmpl"),
-#     ("posts/*.rst", "posts", "post.tmpl"),
-#     ("posts/*.md", "posts", "post.tmpl"),
-#     ("posts/*.txt", "posts", "post.tmpl"),
-#     ("posts/*.html", "posts", "post.tmpl"),
-# )
+POSTS = (
+    ("posts/homepage.rst", "posts", "post.tmpl"),
+    ("posts/homepage.md", "posts", "post.tmpl"),
+    ("posts/homepage.txt", "posts", "post.tmpl"),
+    ("posts/homepage.html", "posts", "post.tmpl"),
+    ("posts/*.rst", "posts", "post.tmpl"),
+    ("posts/*.md", "posts", "post.tmpl"),
+    ("posts/*.txt", "posts", "post.tmpl"),
+    ("posts/*.html", "posts", "post.tmpl"),
+)
 
 # Below this point, everything is optional
 

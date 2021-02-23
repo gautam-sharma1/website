@@ -1,11 +1,12 @@
 .. title: No, doing that online course won't make you an expert!
 .. slug: no-doing-that-online-course-wont-make-you-an-expert
-.. date: 2021-02-20 20:23:07 UTC-07:00
-.. tags: self development, improvement, online courses
+.. date: 2021-02-20 20:34:10 UTC-07:00
+.. tags: 
 .. category: 
 .. link: 
 .. description: 
 .. type: text
+.. TEASER_END: click to read the rest of the article
 
 Since the onset of the unfortunate COVID pandemic, my Linkedin has been full of posts related to students, professionals and people from all walks of life completing online courses expeditiously. I have seen students completing intricate and convoluted subjects like deep learning in a matter of days. While I am a strong proponent of self-education and self-improvement, there are a few points that I would like to share with everyone.
 
@@ -15,3 +16,4 @@ Don't get me wrong, I am not advising against online education. I support it ful
 To give you a realistic idea ML heavily uses Linear Algebra. In my Graduate school, we had a whole semester(4 months) dedicated to it and even then we were not able to cover some topics. We also had an introductory ML course that stretched a semester too and even then we were only able to cover the basics. And then I see some students completing Deep Learning in 5 days!
 I would like to end this article with a famous quote
 "I have learned that I still have a lot to learn"
+
