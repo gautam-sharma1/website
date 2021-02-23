@@ -7,11 +7,15 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://sharmagautam.com/</loc>
-  <lastmod>2021-02-23T04:53:00Z</lastmod>
+  <lastmod>2021-02-23T05:00:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://sharmagautam.com/2021/</loc>
+  <lastmod>2021-02-23T05:01:00Z</lastmod>
  </url>
  <url>
   <loc>https://sharmagautam.com/archive.html</loc>
-  <lastmod>2021-02-23T04:51:00Z</lastmod>
+  <lastmod>2021-02-23T05:01:00Z</lastmod>
  </url>
  <url>
   <loc>https://sharmagautam.com/blog/</loc>
@@ -34,7 +38,15 @@
   <lastmod>2021-02-23T04:51:00Z</lastmod>
  </url>
  <url>
-  <loc>https://sharmagautam.com/no-doing-that-online-course-wont-make-you-an-expert/</loc>
-  <lastmod>2021-02-23T04:51:00Z</lastmod>
+  <loc>https://sharmagautam.com/posts/multi-classifier/</loc>
+  <lastmod>2021-02-23T05:01:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://sharmagautam.com/posts/no-doing-that-online-course-wont-make-you-an-expert/</loc>
+  <lastmod>2021-02-23T05:01:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://sharmagautam.com/posts/welcome-to-mysite/</loc>
+  <lastmod>2021-02-23T05:01:00Z</lastmod>
  </url>
 </urlset>
