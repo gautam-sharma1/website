@@ -1,0 +1,4 @@
+Sitemap: https://sharmagautam.com/sitemapindex.xml
+
+User-Agent: *
+Host: sharmagautam.com
