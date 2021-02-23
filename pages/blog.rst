@@ -8,4 +8,4 @@
 .. type: text
 
 
-- `No, doing that online course won't make you an expert! <../../posts/no-doing-that-online-course-wont-make-you-an-expert/index.html>`__
+- `No, doing that online course won't make you an expert! <no-doing-that-online-course-wont-make-you-an-expert/index.html>`__
