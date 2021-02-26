@@ -9,9 +9,11 @@
 
 {{% thumbnail "/images/mypic.png" alt="Foo Image" align="left" %}}{{% /thumbnail %}}
 
+<link rel="github_icon" href="file" sizes="64"/>
+
 I am Gautam Sharma, a passionate roboticist. I grew up in India playing soccer and even today I don't miss any opportunity for a quick game.
 
-My main interests lie in the intersection of deep learning and autonomous robots. I want to help make systems that make a difference in the world.
+My main interests lie in the intersection of **deep learning and autonomous robots**. I want to help make systems that make a difference in the world.
 
 Previously I worked with `MathWorks <link:https://www.mathworks.com">`__, `Cranfield University <link:"https://www.cranfield.ac.uk">`__
 I will graduate from Arizona State University in May' 21, where I have been part of exciting research projects and courses.

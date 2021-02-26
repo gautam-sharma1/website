@@ -140,13 +140,13 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
-        ("/archive.html", "Archive"),
+        #("/archive.html", "Archive"),
         ("https://drive.google.com/file/d/1Z_hKNX4JZTJ0YyEl3bXya8nGvCXvcyUC/view?usp=sharing", "Resume"),
         ("/Blog/", "Projects"),
         ("/blog/index.html", "Blog"),
-        ((('/foo', 'FOO'),
-          ('/bar', 'BAR')), 'BAZ'),
-        ("/rss.xml", "RSS feed"),
+        # ((('/foo', 'FOO'),
+        #   ('/bar', 'BAR')), 'BAZ'),
+        #("/rss.xml", "RSS feed"),
     ),
 }
 
@@ -938,8 +938,8 @@ IMAGE_THUMBNAIL_SIZE = 200
 # Used to create favicon link like this:
 # <link rel="name" href="file" sizes="size"/>
 # FAVICONS = (
-#     ("icon", "/favicon.ico", "16x16"),
-#     ("icon", "/icon_128x128.png", "128x128"),
+#     #("icon", "/favicon.ico", "16x16"),
+#     ("github_icon", "/icons/github_icon.png", "64x64"),
 # )
 
 # Show teasers (instead of full posts) in indexes? Defaults to False.
@@ -1159,6 +1159,7 @@ MARKDOWN_EXTENSIONS = ['markdown.extensions.fenced_code', 'markdown.extensions.c
 # the default right now)
 # (translatable)
 # SOCIAL_BUTTONS_CODE = """
+# """
 # <!-- Social buttons -->
 # <div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
 # <a class="addthis_button_more">Share</a>
