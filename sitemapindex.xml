@@ -7,7 +7,11 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <sitemap>
   <loc>https://sharmagautam.com/galleries/rss.xml</loc>
-  <lastmod>2021-03-01T01:22:00Z</lastmod>
+  <lastmod>2021-03-01T01:57:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>https://sharmagautam.com/galleries/yolo/rss.xml</loc>
+  <lastmod>2021-03-01T01:57:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>https://sharmagautam.com/rss.xml</loc>
@@ -15,6 +19,6 @@
  </sitemap>
  <sitemap>
   <loc>https://sharmagautam.com/sitemap.xml</loc>
-  <lastmod>2021-03-01T01:22:00Z</lastmod>
+  <lastmod>2021-03-01T01:57:00Z</lastmod>
  </sitemap>
 </sitemapindex>
