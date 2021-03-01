@@ -1,17 +1,17 @@
 .. title: Gautam Sharma
 .. slug: index
 .. date: 2021-02-20 23:03:00 UTC-07:00
-.. tags: 
+.. tags: main
 .. category: 
 .. link: 
 .. description: I am Gautam Sharma, a passionate roboticist
 .. type: text
 
-{{% thumbnail "/images/mypic.png" alt="Foo Image" align="left" %}}{{% /thumbnail %}}
+{{% thumbnail "/images/mypic.png" alt="Foo Image" align="right" %}}{{% /thumbnail %}}
 
-<link rel="github_icon" href="file" sizes="64"/>
 
-I am Gautam Sharma, a passionate roboticist. I grew up in India playing soccer and even today I don't miss any opportunity for a quick game.
+
+I am a passionate roboticist. I grew up in India playing soccer and even today I don't miss any opportunity for a quick game.
 
 My main interests lie in the intersection of **deep learning and autonomous robots**. I want to help make systems that make a difference in the world.
 
@@ -35,7 +35,5 @@ Recent News
 - **August 2020** : Received the prestigious Engineering Graduate Fellowship from ASU for excellence in academics
 - **May 2020 - August 2020** : Currently I am interning @ Mathworks in the domain of reinforcement learning
 - **December 2019** : My research proposal on control of autonomous fleet of drones for search and rescue operations got accepted to get the ASU MORE funding for the spring 2020 semester
-														
-														
 														
 													
