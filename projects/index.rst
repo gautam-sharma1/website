@@ -18,9 +18,6 @@ This is a part of my recent endeavour in making Youtube videos. The aim of ths s
 .. youtube:: YUNv8xO9K0c
    :align: left
 
-.. youtube:: Osx4fjPPyHw
-   :align: center
-
 ------------------------------------------------------------------------------------
 
 
