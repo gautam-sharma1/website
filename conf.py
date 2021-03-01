@@ -142,7 +142,7 @@ NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         #("/archive.html", "Archive"),
         ("https://drive.google.com/file/d/1Z_hKNX4JZTJ0YyEl3bXya8nGvCXvcyUC/view?usp=sharing", "Resume"),
-        ("/Blog/", "Projects"),
+        ("/projects/index.html", "Projects"),
         ("/blog/index.html", "Blog"),
         # ((('/foo', 'FOO'),
         #   ('/bar', 'BAR')), 'BAZ'),
@@ -292,7 +292,7 @@ TIMEZONE = "America/Phoenix"
 # 2 = using a string like “2 days ago” (JS, using Luxon)
 #
 # Your theme must support it, Bootstrap already does.
-# DATE_FANCINESS = 0
+DATE_FANCINESS = 1
 
 # Customize the locale/region used for a language.
 # For example, to use British instead of US English: LOCALES = {'en': 'en_GB'}
@@ -372,7 +372,7 @@ COMPILERS = {
 # Nikola supports logo display.  If you have one, you can put the URL here.
 # Final output is <img src="LOGO_URL" id="logo" alt="BLOG_TITLE">.
 # The URL may be relative to the site root.
-# LOGO_URL = ''
+#LOGO_URL = 'images/logo.thumbnail.png'
 
 # When linking posts to social media, Nikola provides Open Graph metadata
 # which is used to show a nice preview. This includes an image preview
