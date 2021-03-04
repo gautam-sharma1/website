@@ -141,9 +141,10 @@ TRANSLATIONS_PATTERN = '{path}.{lang}.{ext}'
 NAVIGATION_LINKS = {
     DEFAULT_LANG: (
         #("/archive.html", "Archive"),
-        ("https://drive.google.com/file/d/1Z_hKNX4JZTJ0YyEl3bXya8nGvCXvcyUC/view?usp=sharing", "Resume"),
+        #("https://drive.google.com/file/d/1Z_hKNX4JZTJ0YyEl3bXya8nGvCXvcyUC/view?usp=sharing", "Resume"),
         ("/projects/index.html", "Projects"),
         ("/blog/index.html", "Blog"),
+        ("#", "Misc")
         # ((('/foo', 'FOO'),
         #   ('/bar', 'BAR')), 'BAZ'),
         #("/rss.xml", "RSS feed"),

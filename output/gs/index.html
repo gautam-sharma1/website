@@ -40,13 +40,13 @@
 </header><nav class="navbar navbar-expand-md navbar-light bg-white static-top"><div class="collapse navbar-collapse bs-nav-collapsible" id="bs-navbar">
             <ul class="navbar-nav nav-fill d-flex w-100">
 <li class="nav-item">
-<a href="https://drive.google.com/file/d/1Z_hKNX4JZTJ0YyEl3bXya8nGvCXvcyUC/view?usp=sharing" class="nav-link">Resume</a>
-                </li>
-<li class="nav-item">
 <a href="../projects/index.html" class="nav-link">Projects</a>
                 </li>
 <li class="nav-item">
 <a href="../blog/index.html" class="nav-link">Blog</a>
+                </li>
+<li class="nav-item active">
+<a href="." class="nav-link">Misc <span class="sr-only">(active)</span></a>
 
                 
             </li>
@@ -68,7 +68,296 @@
     
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/multi-classifier/" class="u-url">Multi Classifier</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/auto-keyword/" class="u-url">auto keyword</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Gautam Sharma
+                    </span></p>
+            <p class="dateline">
+            <a href="../posts/auto-keyword/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-03-03T21:28:15-07:00" itemprop="datePublished" title="2021-03-03 21:28">2021-03-03 21:28</time></a>
+            </p>
+                        <p class="commentline">
+        
+    <a href="../posts/auto-keyword/#disqus_thread" data-disqus-identifier="cache/posts/auto-keywordomepage.html">Comments</a>
+
+
+                </p>
+</div>
+            </header><div class="p-summary entry-summary">
+                    <div class="section" id="using-auto">
+<h2>Using auto</h2>
+<p>With C++11 came a new keyword called <code class="docutils literal">auto</code>. This has made writing and reading programs so much simpler. For example previously we used to do something like this:</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_dce99ae0e35a4bb6965ddb856638ccdb-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_dce99ae0e35a4bb6965ddb856638ccdb-1"></a><span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_dce99ae0e35a4bb6965ddb856638ccdb-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_dce99ae0e35a4bb6965ddb856638ccdb-2"></a><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"hello"</span><span class="p">;</span>
+</code></td>
+</tr>
+</table></div>
+<p>Now we can do something like this:</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_f79cb6f533904431bb93b68b31c4da70-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_f79cb6f533904431bb93b68b31c4da70-1"></a><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_f79cb6f533904431bb93b68b31c4da70-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_f79cb6f533904431bb93b68b31c4da70-2"></a><span class="k">auto</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"hello"</span><span class="p">;</span>
+</code></td>
+</tr>
+</table></div>
+<p>Well you'll say that's basic stuff. What's the big deal? Well it's kind of a big deal. Let's say you are working with non primitive data types like <code class="docutils literal"><span class="pre">std::vector</span></code>.
+To get the iterator to the vector you needed to do something like:</p>
+<div class="code"><table class="codetable"><tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_87ee31e3c26d4cb39ad53059f8a7ea02-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_87ee31e3c26d4cb39ad53059f8a7ea02-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">my_vec</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">};</span>
+</code></td>
+</tr></table></div>
+<p>Well that does not seem that bad. Let's see the next example. Here we are using <code class="docutils literal"><span class="pre">std::map</span></code> of <code class="docutils literal">vector&lt;vector&lt;int&gt;&gt; and <span class="pre">std::vector&lt;int&gt;::iterator</span> it</code>.</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_d10cb92bc3b2451789736e45e23f757d-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_d10cb92bc3b2451789736e45e23f757d-1"></a><span class="c1">// my_map is defined as : std::map&lt;vector&lt;vector&lt;int&gt;&gt;, std::vector&lt;int&gt;::iterator&gt; my_map</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_d10cb92bc3b2451789736e45e23f757d-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_d10cb92bc3b2451789736e45e23f757d-2"></a><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">iterator</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">my_iter</span> <span class="o">=</span> <span class="n">my_map</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+</code></td>
+</tr>
+</table></div>
+<p>Using <code class="docutils literal">auto</code> it simplifies to:</p>
+<div class="code"><table class="codetable"><tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_8679bcb30c4d465f992e53acea3c5de3-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_8679bcb30c4d465f992e53acea3c5de3-1"></a> <span class="k">auto</span> <span class="n">my_iter</span> <span class="o">=</span> <span class="n">my_map</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+</code></td>
+</tr></table></div>
+<div class="section" id="using-lambdas">
+<h3>Using lambdas</h3>
+<p>Another great use of auto is with <code class="docutils literal">lambdas</code>.</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_5218620f374c41ac97c59ae19e397ed9-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_5218620f374c41ac97c59ae19e397ed9-1"></a> <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">sum</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;};</span> <span class="c1">// without auto</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_5218620f374c41ac97c59ae19e397ed9-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_5218620f374c41ac97c59ae19e397ed9-2"></a> <span class="k">auto</span> <span class="n">sum</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;};</span> <span class="c1">// using auto</span>
+</code></td>
+</tr>
+</table></div>
+<p>It is also great to use for automatically deducing argument types</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_618a2d28f59149fd8eb333a345eca12e-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_618a2d28f59149fd8eb333a345eca12e-1"></a> <span class="k">auto</span> <span class="n">sum</span> <span class="o">=</span> <span class="p">[](</span><span class="k">auto</span> <span class="k">const</span> <span class="n">a</span><span class="p">,</span> <span class="k">auto</span> <span class="k">const</span> <span class="n">b</span><span class="p">){</span><span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;};</span> <span class="c1">// using auto</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_618a2d28f59149fd8eb333a345eca12e-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_618a2d28f59149fd8eb333a345eca12e-2"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_618a2d28f59149fd8eb333a345eca12e-3"><code data-line-number="3"></code></a></td>
+<td class="code"><code><a name="rest_code_618a2d28f59149fd8eb333a345eca12e-3"></a> <span class="c1">// another example</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_618a2d28f59149fd8eb333a345eca12e-4"><code data-line-number="4"></code></a></td>
+<td class="code"><code><a name="rest_code_618a2d28f59149fd8eb333a345eca12e-4"></a> <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">A</span><span class="p">,</span> <span class="k">class</span> <span class="nc">B</span><span class="o">&gt;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_618a2d28f59149fd8eb333a345eca12e-5"><code data-line-number="5"></code></a></td>
+<td class="code"><code><a name="rest_code_618a2d28f59149fd8eb333a345eca12e-5"></a> <span class="k">auto</span> <span class="n">product</span><span class="p">(</span><span class="n">A</span> <span class="n">a</span><span class="p">,</span> <span class="n">B</span> <span class="n">b</span><span class="p">){</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_618a2d28f59149fd8eb333a345eca12e-6"><code data-line-number="6"></code></a></td>
+<td class="code"><code><a name="rest_code_618a2d28f59149fd8eb333a345eca12e-6"></a>     <span class="k">return</span> <span class="n">A</span><span class="p">.</span><span class="n">value</span> <span class="o">*</span> <span class="n">B</span><span class="p">.</span> <span class="n">value</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_618a2d28f59149fd8eb333a345eca12e-7"><code data-line-number="7"></code></a></td>
+<td class="code"><code><a name="rest_code_618a2d28f59149fd8eb333a345eca12e-7"></a> <span class="p">}</span>
+</code></td>
+</tr>
+</table></div>
+</div>
+<div class="section" id="best-use-of-auto">
+<h3>Best use of <code class="docutils literal">auto</code>
+</h3>
+<p>In my opinion the best use of <code class="docutils literal">auto</code> is in initializing variables. It makes sure that every variable gets initialized.</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_166ef83b39704fcc85f7331845bb4c08-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_166ef83b39704fcc85f7331845bb4c08-1"></a> <span class="k">auto</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// will throw an error</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_166ef83b39704fcc85f7331845bb4c08-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_166ef83b39704fcc85f7331845bb4c08-2"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_166ef83b39704fcc85f7331845bb4c08-3"><code data-line-number="3"></code></a></td>
+<td class="code"><code><a name="rest_code_166ef83b39704fcc85f7331845bb4c08-3"></a> <span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="c1">// no error and a good practice too!</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_166ef83b39704fcc85f7331845bb4c08-4"><code data-line-number="4"></code></a></td>
+<td class="code"><code><a name="rest_code_166ef83b39704fcc85f7331845bb4c08-4"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_166ef83b39704fcc85f7331845bb4c08-5"><code data-line-number="5"></code></a></td>
+<td class="code"><code><a name="rest_code_166ef83b39704fcc85f7331845bb4c08-5"></a> <span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="s">"Hello"</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_166ef83b39704fcc85f7331845bb4c08-6"><code data-line-number="6"></code></a></td>
+<td class="code"><code><a name="rest_code_166ef83b39704fcc85f7331845bb4c08-6"></a> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="c1">// loss of data since unsigned int being converted to int</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_166ef83b39704fcc85f7331845bb4c08-7"><code data-line-number="7"></code></a></td>
+<td class="code"><code><a name="rest_code_166ef83b39704fcc85f7331845bb4c08-7"></a> <span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="c1">// no loss of data</span>
+</code></td>
+</tr>
+</table></div>
+</div>
+<div class="section" id="few-caveats">
+<h3>Few caveats</h3>
+<p>Be very careful while working with references. <code class="docutils literal">auto</code> in general is not able to deduce referenced return type.</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-1"><code data-line-number=" 1"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-1"></a> <span class="k">static</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-2"><code data-line-number=" 2"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-2"></a> <span class="kt">int</span> <span class="o">&amp;</span> <span class="nf">get_val</span><span class="p">(){</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-3"><code data-line-number=" 3"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-3"></a>     <span class="k">return</span> <span class="n">val</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-4"><code data-line-number=" 4"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-4"></a> <span class="p">}</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-5"><code data-line-number=" 5"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-5"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-6"><code data-line-number=" 6"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-6"></a> <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-7"><code data-line-number=" 7"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-7"></a>     <span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get_val</span><span class="p">();</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-8"><code data-line-number=" 8"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-8"></a>     <span class="n">val</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-9"><code data-line-number=" 9"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-9"></a>     <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// gives 5</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-10"><code data-line-number="10"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-10"></a>                    <span class="c1">// new value of val not propogated to y</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_e806467355264e74b44f8b3b58eb444b-11"><code data-line-number="11"></code></a></td>
+<td class="code"><code><a name="rest_code_e806467355264e74b44f8b3b58eb444b-11"></a> <span class="p">}</span>
+</code></td>
+</tr>
+</table></div>
+<p>In the above program the data type of y is <code class="docutils literal">int</code> and not <code class="docutils literal">&amp;int</code> as expected. The compiler is not able to deduce the return type as <code class="docutils literal">&amp;int</code>. This issue is easily solved by using <code class="docutils literal">&amp;auto</code> instead
+of <code class="docutils literal">auto</code>.</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-1"><code data-line-number=" 1"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-1"></a> <span class="k">static</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-2"><code data-line-number=" 2"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-2"></a> <span class="kt">int</span> <span class="o">&amp;</span> <span class="nf">get_val</span><span class="p">(){</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-3"><code data-line-number=" 3"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-3"></a>     <span class="k">return</span> <span class="n">val</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-4"><code data-line-number=" 4"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-4"></a> <span class="p">}</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-5"><code data-line-number=" 5"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-5"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-6"><code data-line-number=" 6"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-6"></a> <span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-7"><code data-line-number=" 7"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-7"></a>     <span class="k">auto</span> <span class="o">&amp;</span><span class="n">y</span> <span class="o">=</span> <span class="n">get_val</span><span class="p">();</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-8"><code data-line-number=" 8"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-8"></a>     <span class="n">val</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-9"><code data-line-number=" 9"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-9"></a>     <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">y</span><span class="o">&lt;&lt;</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// gives 6</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/auto-keyword/#rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-10"><code data-line-number="10"></code></a></td>
+<td class="code"><code><a name="rest_code_0ce1718d30e74d4ea71dc22cbbd44d3a-10"></a> <span class="p">}</span>
+</code></td>
+</tr>
+</table></div>
+<p>For a more expansive overview visit <a class="reference external" href="https://en.cppreference.com/w/cpp/language/auto">auto</a>. Another great <a class="reference external" href="https://herbsutter.com/2013/08/12/gotw-94-solution-aaa-style-almost-always-auto/">post</a>
+by <a class="reference external" href="https://herbsutter.com">Herb Setter</a></p>
+<p>Please feel free to add any comments, opinion etc. below.</p>
+<p>Signing out</p>
+<p>-G</p>
+</div>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/multi-classifier/" class="u-url">Multi Classifier</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         Gautam Sharma
