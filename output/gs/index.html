@@ -68,7 +68,172 @@
     
         
     <div class="postindex">
-            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/auto-keyword/" class="u-url">auto keyword</a></h1>
+            <article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/initializer-lists/" class="u-url">Initializer Lists</a></h1>
+                <div class="metadata">
+                    <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                        Gautam Sharma
+                    </span></p>
+            <p class="dateline">
+            <a href="../posts/initializer-lists/" rel="bookmark">
+            <time class="published dt-published" datetime="2021-03-23T20:12:55-07:00" itemprop="datePublished" title="2021-03-23 20:12">2021-03-23 20:12</time></a>
+            </p>
+                        <p class="commentline">
+        
+    <a href="../posts/initializer-lists/#disqus_thread" data-disqus-identifier="cache/posts/initializer-listsomepage.html">Comments</a>
+
+
+                </p>
+</div>
+            </header><div class="p-summary entry-summary">
+                    <div class="section" id="uniform-initialization">
+<h2>Uniform Initialization</h2>
+<div class="section" id="before-c-17">
+<h3>Before C++17</h3>
+<p>Broadly speaking there are two main types of initialization in C++</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_1cf67fec5b36499f84b419b30c919371-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_1cf67fec5b36499f84b419b30c919371-1"></a><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">height</span><span class="p">{</span><span class="mi">1</span><span class="p">};</span>     <span class="c1">// direct initialization</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_1cf67fec5b36499f84b419b30c919371-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_1cf67fec5b36499f84b419b30c919371-2"></a><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">height</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">};</span>  <span class="c1">// copy initialization</span>
+</code></td>
+</tr>
+</table></div>
+<p>The main difference between the two is the that <code class="docutils literal">direct initialization</code> directly constructs the object <code class="docutils literal">{1}</code> and assigns it to <code class="docutils literal">height</code> whereas
+copy initialization first constructs the object <code class="docutils literal">{1}</code> (think an extra default constructor call) and then assigns it to <code class="docutils literal">height</code>. Let me give you a solid
+example.</p>
+<p>Another important thing to note is that copy initialization is more strict in terms of implict conversions than direct initialization. It does not allow any
+implicit conversion.</p>
+<p>The STL data structures like <code class="docutils literal">vector</code> also make use of direct initialization as follows:</p>
+<div class="code"><table class="codetable"><tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_3f5c3f11044d4706afc67896513cfd16-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_3f5c3f11044d4706afc67896513cfd16-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">height</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span> <span class="c1">// allowed</span>
+</code></td>
+</tr></table></div>
+<p>It is able to do it since it has a constructor that takes in arguments of type <code class="docutils literal"><span class="pre">std::initializer_list&lt;T&gt;</span></code>.</p>
+<div class="section" id="important">
+<h4>Important</h4>
+<p>The constructor of type <code class="docutils literal"><span class="pre">std::initializer_list&lt;T&gt;</span></code> always gets precedence. Eg:</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-1"><code data-line-number=" 1"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-1"></a><span class="k">class</span> <span class="nc">Point</span><span class="p">{</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-2"><code data-line-number=" 2"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-2"></a><span class="k">public</span><span class="o">:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-3"><code data-line-number=" 3"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-3"></a> <span class="n">Point</span><span class="p">(</span><span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">)</span><span class="o">:</span><span class="n">_a</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="n">_b</span><span class="p">(</span><span class="n">b</span><span class="p">){};</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-4"><code data-line-number=" 4"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-4"></a> <span class="n">Point</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">initializer_list</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">pt</span><span class="p">){};</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-5"><code data-line-number=" 5"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-5"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-6"><code data-line-number=" 6"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-6"></a> <span class="k">private</span><span class="o">:</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-7"><code data-line-number=" 7"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-7"></a>     <span class="kt">double</span> <span class="n">_a</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-8"><code data-line-number=" 8"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-8"></a>     <span class="kt">double</span> <span class="n">_b</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-9"><code data-line-number=" 9"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-9"></a><span class="p">};</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-10"><code data-line-number="10"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-10"></a>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_410ab2030d8d41aa9ba88ac600d2c898-11"><code data-line-number="11"></code></a></td>
+<td class="code"><code><a name="rest_code_410ab2030d8d41aa9ba88ac600d2c898-11"></a><span class="n">Point</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">})</span> <span class="c1">// calls constructor with  std::initializer_list&lt;double&gt;</span>
+</code></td>
+</tr>
+</table></div>
+<p>Now you may ask that what's the difference between <code class="docutils literal"><span class="pre">std::vector&lt;double&gt;</span> height{5}</code> and <code class="docutils literal"><span class="pre">std::vector&lt;double&gt;</span> height(5)</code>.
+As discussed above calling <code class="docutils literal"><span class="pre">std::vector&lt;double&gt;</span> height{5}</code> will implicitly call the constructor with <code class="docutils literal"><span class="pre">std::initializer_list&lt;double&gt;</span></code>
+and make a <code class="docutils literal"><span class="pre">std::vector&lt;double&gt;</span></code> containing single element 5. On the other hand <code class="docutils literal"><span class="pre">std::vector&lt;double&gt;</span> height(5)</code> will construct a
+<code class="docutils literal"><span class="pre">std::vector&lt;double&gt;</span></code> of size 5;</p>
+<p>Another thing to note is the above mentioned strictness of implicit conversion during brace initialization. According to C++ standard
+<a class="reference external" href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2014/n4296.pdf">paragraph 8.5.4</a> braze initialization does not allow narrowing conversion. A narrowing conversion is defined as</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_6bd6b51908ee47f98a4f3e96ed3be46a-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_6bd6b51908ee47f98a4f3e96ed3be46a-1"></a> <span class="kt">int</span> <span class="n">height</span><span class="p">{</span><span class="mf">4.99</span><span class="p">};</span> <span class="c1">// error</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_6bd6b51908ee47f98a4f3e96ed3be46a-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_6bd6b51908ee47f98a4f3e96ed3be46a-2"></a> <span class="kt">int</span> <span class="n">height</span><span class="p">{</span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="mf">4.99</span><span class="p">)};</span> <span class="c1">// ok</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_6bd6b51908ee47f98a4f3e96ed3be46a-3"><code data-line-number="3"></code></a></td>
+<td class="code"><code><a name="rest_code_6bd6b51908ee47f98a4f3e96ed3be46a-3"></a> <span class="kt">double</span> <span class="n">g</span> <span class="o">=</span> <span class="mf">9.81</span><span class="p">;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_6bd6b51908ee47f98a4f3e96ed3be46a-4"><code data-line-number="4"></code></a></td>
+<td class="code"><code><a name="rest_code_6bd6b51908ee47f98a4f3e96ed3be46a-4"></a> <span class="kt">float</span> <span class="n">a</span><span class="p">{</span><span class="n">g</span><span class="p">};</span> <span class="c1">//error</span>
+</code></td>
+</tr>
+</table></div>
+</div>
+</div>
+<div class="section" id="after-c-17">
+<h3>After C++ 17</h3>
+<p><code class="docutils literal"><span class="pre">C++17</span></code> solves the above problem. In the new standard can use <cite>auto</cite> to solve some of the problems.
+For example:</p>
+<div class="code"><table class="codetable">
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_cdd6fcc939a2437fa924ca3dc18973a8-1"><code data-line-number="1"></code></a></td>
+<td class="code"><code><a name="rest_code_cdd6fcc939a2437fa924ca3dc18973a8-1"></a><span class="k">auto</span> <span class="n">height</span><span class="p">{</span><span class="mi">42</span><span class="p">};</span> <span class="c1">// int</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_cdd6fcc939a2437fa924ca3dc18973a8-2"><code data-line-number="2"></code></a></td>
+<td class="code"><code><a name="rest_code_cdd6fcc939a2437fa924ca3dc18973a8-2"></a><span class="k">auto</span> <span class="n">height</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span> <span class="c1">// std::initializer_list&lt;T&gt;</span>
+</code></td>
+</tr>
+<tr>
+<td class="linenos linenodiv"><a href="../posts/initializer-lists/#rest_code_cdd6fcc939a2437fa924ca3dc18973a8-3"><code data-line-number="3"></code></a></td>
+<td class="code"><code><a name="rest_code_cdd6fcc939a2437fa924ca3dc18973a8-3"></a><span class="k">auto</span> <span class="n">d</span><span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span> <span class="c1">// error - too many values to unpack</span>
+</code></td>
+</tr>
+</table></div>
+<p>In <code class="docutils literal"><span class="pre">C++11</span></code> all of the above triggered <code class="docutils literal"><span class="pre">std::initializer_list&lt;T&gt;</span></code></p>
+<p>For a more expansive overview visit <a class="reference external" href="https://en.cppreference.com/w/cpp/utility/initializer_list">initializer_list</a>.</p>
+<p>Please feel free to add any comments, opinion etc. below.</p>
+<p>Signing out</p>
+<p>-Gautam</p>
+</div>
+</div>
+                </div>
+            </article><article class="h-entry post-text" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title"><a href="../posts/auto-keyword/" class="u-url">auto keyword</a></h1>
                 <div class="metadata">
                     <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                         Gautam Sharma
@@ -447,7 +612,24 @@ I will graduate from Arizona State University in May' 21, where I have been part
 </div>
 
 
-        <script src="../assets/js/all-nocdn.js"></script><script src="../assets/js/luxon.min.js"></script><!-- fancy dates --><script>
+        <script src="../assets/js/all-nocdn.js"></script><script src="../assets/js/luxon.min.js"></script><div id="addthisbox" class="addthis_toolbox addthis_peekaboo_style addthis_default_style addthis_label_style addthis_32x32_style">
+<a class="addthis_button_more">Share</a>
+<ul>
+<li>
+<a class="addthis_button_facebook"></a>
+</li>
+<li>
+<a class="addthis_button_google_plusone_share"></a>
+</li>
+<li>
+<a class="addthis_button_linkedin"></a>
+</li>
+<li>
+<a class="addthis_button_twitter"></a>
+</li>
+</ul>
+</div>
+<script src="https://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-4f7088a56bb93798"></script><!-- fancy dates --><script>
         luxon.Settings.defaultLocale = "en";
         fancydates(1, {"preset": false, "format": "yyyy-MM-dd HH:mm"});
         </script><!-- end fancy dates --><script>
